@@ -1,13 +1,14 @@
 let snake = undefined;
 let food = undefined;
-let numberOfRows = 60;
-let numberOfCols = 120;
+let numberOfRows = 80;
+let numberOfCols = 160;
 let animator = undefined;
 
 //lines added. vvv
 const doesHittedToSideEdges = function(head) {
   return head.x == 0||head.x==numberOfCols-1;
 }
+
 const doesHittedToUpperOrLowerEdges=function(head){
   return head.y==numberOfRows-1||head.y==0;
 }
@@ -16,29 +17,16 @@ const hittedWall = function(head) {
   return doesHittedToSideEdges(head)||doesHittedToUpperOrLowerEdges(head)
 }
 
-const isGameOver = function(head, tail) {
-  return hittedWall(head)||hasEatenItSelf(head,tail);
+const isGameOver = function(head) {
+  return hittedWall(head)||snake.hasEatenItSelf();
 }
 
 const resetTheGame=function(){
   clearInterval(animator);
   location.reload();
-  createSnake();
-  startGame();
 }
-
-
-const hasEatenItSelf=function(){
-  let body=snake.body;
-  let head=snake.getHead();
-  return body.find(function(element) {
-    return element.x==head.x&&element.y==head.y
-  })
-}
-
 
 const animateSnake = function() {
-  hasEatenItSelf()
   let oldHead = snake.getHead();
   let oldTail = snake.move();
   let head = snake.getHead();
