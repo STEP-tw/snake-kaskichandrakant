@@ -17,7 +17,7 @@ const hittedWall = function(head) {
 }
 
 const isGameOver = function(head, tail) {
-  return hittedWall(head) //||eatenItSelf(head,tail);
+  return hittedWall(head)||hasEatenItSelf(head,tail);
 }
 
 const resetTheGame=function(){
@@ -27,10 +27,16 @@ const resetTheGame=function(){
   startGame();
 }
 
-
-
+const hasEatenItSelf=function(){
+  let body=snake.body;
+  let head=snake.getHead();
+  return body.find(function(element) {
+    return element.x==head.x&&element.y==head.y
+  })
+}
 
 const animateSnake = function() {
+  hasEatenItSelf()
   let oldHead = snake.getHead();
   let oldTail = snake.move();
   let head = snake.getHead();
@@ -76,6 +82,7 @@ const createSnake = function() {
   body.push(tail);
   body.push(tail.next());
   let head = tail.next().next();
+
 
   snake = new Snake(head, body);
 }
