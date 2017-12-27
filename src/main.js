@@ -6,19 +6,27 @@ let animator = undefined;
 
 //lines added. vvv
 const doesHittedToSideEdges = function(head) {
-  return head.x == -1||head.x==120;
+  return head.x == 0||head.x==119;
 }
 const doesHittedToUpperOrLowerEdges=function(head){
-  return head.y==60||head.y==-1;
+  return head.y==59||head.y==0;
 }
 
 const hittedWall = function(head) {
   return doesHittedToSideEdges(head)||doesHittedToUpperOrLowerEdges(head)
 }
+
 const isGameOver = function(head, tail) {
-  console.log('its working');
   return hittedWall(head) //||eatenItSelf(head,tail);
 }
+
+const resetTheGame=function(){
+  clearInterval(animator);
+  location.reload();
+  createSnake();
+  startGame();
+}
+
 
 
 
@@ -26,6 +34,9 @@ const animateSnake = function() {
   let oldHead = snake.getHead();
   let oldTail = snake.move();
   let head = snake.getHead();
+  if (isGameOver(head)) {
+    clearInterval(animator);
+  }
   paintBody(oldHead);
   unpaintSnake(oldTail);
   paintHead(head);
@@ -36,9 +47,6 @@ const animateSnake = function() {
   }
 
   //lines added. vvv
-  if (isGameOver(head)) {
-    alert('GameOver')
-  }
 }
 
 const changeSnakeDirection = function(event) {
