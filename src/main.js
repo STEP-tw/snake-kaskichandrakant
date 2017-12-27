@@ -34,9 +34,6 @@ const animateSnake = function() {
   let oldHead = snake.getHead();
   let oldTail = snake.move();
   let head = snake.getHead();
-  if (isGameOver(head)) {
-    clearInterval(animator);
-  }
   paintBody(oldHead);
   unpaintSnake(oldTail);
   paintHead(head);
@@ -45,8 +42,11 @@ const animateSnake = function() {
     createFood(numberOfRows, numberOfCols);
     drawFood(food);
   }
-
   //lines added. vvv
+  if (isGameOver(head)) {
+    clearInterval(animator);
+    document.getElementById('restart').style='visibility:visible'
+  }
 }
 
 const changeSnakeDirection = function(event) {

@@ -24,3 +24,6 @@
   background-color: blue;
   border-radius: 50%;
 }
+#restart{
+  visibility: hidden;
+}
