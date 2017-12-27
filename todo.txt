@@ -1,0 +1,8 @@
+letting the game know about its terminals.
+make sure that game should be over when one of the condition from :-
+   1- eatenItSelf
+   2- hitted to the edges.
+ is satisfied.
+
+after game over initiate the new game for the user.
+  -means to reset the game to initial position.
