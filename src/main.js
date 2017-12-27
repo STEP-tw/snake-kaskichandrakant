@@ -6,10 +6,10 @@ let animator = undefined;
 
 //lines added. vvv
 const doesHittedToSideEdges = function(head) {
-  return head.x == 0||head.x==119;
+  return head.x == 0||head.x==numberOfCols-1;
 }
 const doesHittedToUpperOrLowerEdges=function(head){
-  return head.y==59||head.y==0;
+  return head.y==numberOfRows-1||head.y==0;
 }
 
 const hittedWall = function(head) {
@@ -27,6 +27,7 @@ const resetTheGame=function(){
   startGame();
 }
 
+
 const hasEatenItSelf=function(){
   let body=snake.body;
   let head=snake.getHead();
@@ -34,6 +35,7 @@ const hasEatenItSelf=function(){
     return element.x==head.x&&element.y==head.y
   })
 }
+
 
 const animateSnake = function() {
   hasEatenItSelf()
